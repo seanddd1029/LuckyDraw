@@ -1,0 +1,27 @@
+server:
+  port: 8080
+#配置spring数据源
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/luckydraw?useUnicode=true
+    driver-class-name: com.mysql.jdbc.Driver
+#mybatis文件引入配置（注解的方式引入也可以）
+mybatis:
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+  config-location: classpath:/mybatis/config/mybatis-config.xml
+
+#dubbo广播配置
+dubbo:
+  application:
+    name: LuckyDraw
+    version: 1.0.0
+  registry:
+    address: N/A #multicast://224.5.6.7:1234 服务提供者和服务调用者都需要配置相同的广播地址。或者配置为 N/A 用于直连模式使用
+  protocol:
+    name: dubbo
+    port: 20880
+  scan:
+    base-packages: com.example.rpc
+  #spring中自动扫描的地址，可以把此包下的所有rpc接口都注册到服务中
